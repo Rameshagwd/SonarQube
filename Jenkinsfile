@@ -11,9 +11,14 @@ pipeline {
                 sh 'sshpass -p "sonar@123" scp -r /var/lib/jenkins/workspace/Shall_Script_Project/sonarqube.sh sonar@10.32.39.252:/tmp'
             }
         }
-        stage ('Execute the SonarQube Script') {
+        stage ('Sonar Remote Login') {
             steps {
                 sh 'ssh sonar@10.32.39.252'
+            }
+        }
+        stage ('validate the hostname') {
+            steps {
+                sh 'hostname'
             }
         }
       
