@@ -23,15 +23,8 @@ FLUSH PRIVILEGES;" > /tmp/sonar.sql
 mysql < /tmp/sonar.sql
 
 echo "Creating User for SonarQube DB"
-usage() {
-  printf "create-user [-u|--username] <sonarqube>\n"
-  printf " OPTIONS\n"
-  printf "  -u --username\sonarqube of the new account (required)\n"
-  printf "  -p --password\sonar@123 for the new account (optional)\n"
-  printf "  -h --help\tprint this help\n"
-  exit 1
-}
+useradd -m sonarqube -p sonar@123
 
 echo "Downloading SonarQube Package"
 cd /tmp
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip &>>LOG
