@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing SonarQube Dependences"
-yum install wget unzip java -yum
+yum install wget unzip java -y
 
 echo "Downloading Mysql Package"
 wget https://repo.mysql.com/yum/mysql-connectors-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
