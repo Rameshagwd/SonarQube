@@ -23,7 +23,7 @@ FLUSH PRIVILEGES;" > /tmp/sonar.sql
 mysql < /tmp/sonar.sql
 
 echo "Creating User for SonarQube DB"
-useradd -m sonarqube -p sonar@123
+useradd -m -p sonar@123 sonarqube
 
 echo "Downloading SonarQube Package"
 cd /tmp
