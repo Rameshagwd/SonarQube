@@ -11,7 +11,7 @@ pipeline {
                 sh 'sshpass -p "sonar@123" scp -r /var/lib/jenkins/workspace/SonarQube_Pipeline/sonarqube.sh sonar@10.32.39.252:/tmp'
             }
         }
-        stage ('Execute the Sonar Qube Script') {
+        stage ('Adding sudo') {
             steps {
                 sh 'ssh sonar@10.32.39.252 export HISTIGNORE='*sudo -S*''
             }
