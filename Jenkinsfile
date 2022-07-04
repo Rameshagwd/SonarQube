@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('Adding sudo') {
             steps {
-                sh 'ssh sonar@10.32.39.252 "export HISTIGNORE='*sudo -S'*"'
+                sh 'ssh sonar@10.32.39.252 export HISTIGNORE='*sudo -S'*'
             }
         }
 
