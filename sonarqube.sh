@@ -10,21 +10,21 @@ wget https://repo.mysql.com/yum/mysql-connectors-community/el/7/x86_64/mysql-com
 
 echo "Installing Mysql"
 rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum install mysql-server -y
+yum install mysql-server -y &>>$LOG
 
 echo "Starting Mysql Service"
-systemctl start mysqld
+systemctl start mysqld &>>$LOG
 
 echo "Updating Mysql Config"
 echo "CREATE DATABASE sonarqube_db;
 CREATE USER 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON sonarqube_db.* TO 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
 FLUSH PRIVILEGES;" > /tmp/sonar.sql
-mysql < /tmp/sonar.sql
+mysql < /tmp/sonar.sql &>>$LOG
 
 echo "Creating User for SonarQube DB"
-useradd -m -p sonar@123 sonarqube
+useradd -m -p sonar@123 sonarqube &>>$LOG
 
 echo "Downloading SonarQube Package"
 cd /tmp
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip &>>LOG
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip &>>$LOG
