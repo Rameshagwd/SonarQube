@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('Execute the Sonar Qube Script') {
             steps {
-                sh 'ssh sonar@10.32.39.252 "| sh /tmp/sonarqube.sh"' sudo: true
+                sh 'sshpass -p "sonar@123" ssh sonar@10.32.39.252 "| sudo sh /tmp/sonarqube.sh"'
             }
         }
               
