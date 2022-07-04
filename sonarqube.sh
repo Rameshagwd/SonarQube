@@ -1,6 +1,7 @@
 #!/bin/bash
-NAME=RA
 
-echo "Welcome to $NAME DevOps"
-echo "Welcome to $NAME Configuration Management"
-echo "Welcome to $NAME Cloud"
+echo "Installing SonarQube Dependences"
+yum install wget unzip java -yum
+
+echo "Downloading Mysql Package"
+wget https://repo.mysql.com/yum/mysql-connectors-community/el/7/x86_64/mysql-community-release-el7-5.noarch.rpm
