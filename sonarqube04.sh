@@ -9,7 +9,7 @@ SQ_PKG=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.z
 SQ_ZIP=$(echo $SQ_PKG awk -F / '{print $NF}')
 
 VALIDATE() {
-    if [ $1 -ne 0]; then
+    if [ $1 -ne 0 ]; then
         echo "$2 ... FAILED"
     else
         echo "$2 ... SUCCESS"
