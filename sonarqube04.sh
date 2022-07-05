@@ -11,7 +11,7 @@ SQ_ZIP=$(echo $SQ_PKG awk -F / '{print $NF}')
 
 if [ $ID -ne 0 ]; then
     echo "You do not have the admin privileges to run this script file.......!"
-    exit1
+    exit 1
 else
     echo "Running the script file with admin privileges.......!"
 fi
@@ -77,4 +77,8 @@ if [ -f /tmp/$MYSQL_RPM ]; then
             sonar.jdbc.url=jdbc:mysql://localhost:3306/sonarqube_db?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance' >> /opt/sonarqube/conf/sonar.properties
             VALIDATE $? "Updating SonarQube DB Details"
 fi
+sed -i 's/#RUN_AS_USER=/RUN_AS_USER=sonarqube/g' /opt/sonarqube/bin/linux-x86-64/sonar.sh
+VALIDATE $? "Updating SonarQube user into the DB Configuation"
+
+sh /opt/sonarqube/bin/linux-x86-64/sonar.sh start
 
