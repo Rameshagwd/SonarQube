@@ -14,7 +14,7 @@ else
     echo "Installing SonarQube Dependences .........SUCCESS"
 fi
 
-if [-e /tmp/$MYSQL_PKG]; then
+if [ -f /tmp/$MYSQL_PKG ]; then
     echo "MYSQL Package was downloaded"
         else
             echo "Downloading Mysql Package"
@@ -62,7 +62,7 @@ else
     echo "Creating User for SonarQube DB .........SUCCESS"
 fi
 
-if [-e /tmp/$MYSQL_RPM]; then
+if [ -f /tmp/$MYSQL_RPM ]; then
     
             echo "The SQ file was downloaded"
     else
