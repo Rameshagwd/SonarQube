@@ -47,7 +47,7 @@ else
 fi
 
 if [ -f /tmp/sonar.sql ]; then
-    echo "The Mysql Config was updated"
+    echo "The Mysql Config was updated .........SUCCESS"
 else
     echo "Updating Mysql Config"
         echo "CREATE DATABASE sonarqube_db;
@@ -65,10 +65,15 @@ fi
 
 egrep "sonarqube" /etc/passwd > /dev/null
 if [ $? -eq 0 ]; then
-    echo "The sonarqube user is created"
+    echo "The sonarqube DB user was created .........SUCCESS"
 else
     echo "Creating User for SonarQube DB"
         useradd -m -p sonar@123 sonarqube &>>$LOG
+        if [ $? -ne 0 ]; then
+                echo "Creating User for SonarQube DBg .........FAILED"
+            else
+                echo "Creating User for SonarQube DBg .........SUCCESS"
+        fi
 fi
 
 if [ -f /tmp/$MYSQL_RPM ]; then
