@@ -9,7 +9,7 @@ MYSQL_RPM=$(echo $MYSQL_PKG | cut -d/ -f9)
 SQ_PKG=https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip
 SQ_ZIP=$(echo $SQ_PKG awk -F / '{print $NF}')
 
-if [$ID -ne 0]; then
+if [ $ID -ne 0 ]; then
     echo "You do not have the admin privileges to run this script file.......!"
     exit1
 else
