@@ -14,18 +14,21 @@ else
     echo "Installing SonarQube Dependences .........SUCCESS"
 fi
 
-echo "Downloading Mysql Package"
-wget $MYSQL_PKG -O /tmp/$MYSQL_RPM &>>$LOG
+if [-e /tmp/$MYSQL_PKG]; then
+    echo "MYSQL Package was downloaded"
+        else
+            echo "Downloading Mysql Package"
+            wget $MYSQL_PKG -O /tmp/$MYSQL_RPM &>>$LOG
 
-if [ $? -ne 0 ]; then
-    echo "Downloading Mysql Package .........FAILED"
-else
-    echo "Downloading Mysql Package .........SUCCESS"
+            if [ $? -ne 0 ]; then
+                echo "Downloading Mysql Package .........FAILED"
+            else
+                echo "Downloading Mysql Package .........SUCCESS"
+            fi
 fi
 
 echo "Installing Mysql"
-cd /tmp/
-rpm -ivh $MYSQL_RPM &>>$LOG
+rpm -ivh /tmp/$MYSQL_RPM &>>$LOG
 yum install mysql-server -y &>>$LOG
 
 if [ $? -ne 0 ]; then
@@ -53,7 +56,13 @@ mysql < /tmp/sonar.sql &>>$LOG
 echo "Creating User for SonarQube DB"
 useradd -m -p sonar@123 sonarqube &>>$LOG
 
-if [-e $MYSQL_RPM]; then
+if [ $? -ne 0 ]; then
+    echo "Creating User for SonarQube DB .........FAILED"
+else
+    echo "Creating User for SonarQube DB .........SUCCESS"
+fi
+
+if [-e /tmp/$MYSQL_RPM]; then
     
             echo "The SQ file was downloaded"
     else
