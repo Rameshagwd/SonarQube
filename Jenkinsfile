@@ -8,17 +8,17 @@ pipeline {
         }
         stage ('Remote Copy') {
             steps {
-                sh 'sshpass -p "sonar@123" scp -r /var/lib/jenkins/workspace/SonarQube_Pipeline/sonarqube04.sh sonar@10.32.39.252:/tmp'
+                sh 'sshpass -p "sonar@123" scp -r /var/lib/jenkins/workspace/SonarQube_Pipeline/sonarqube_final.sh sonar@10.32.39.252:/tmp'
             }
         }
         stage ('Set the permission') {
             steps {
-                sh 'ssh -t sonar@10.32.39.252 "chmod -R 755 /tmp/sonarqube04.sh"'
+                sh 'ssh -t sonar@10.32.39.252 "chmod -R 755 /tmp/sonarqube_final.sh"'
             }
         }
         stage ('Execute the Sonar Qube Script') {
             steps {
-                sh 'ssh -t sonar@10.32.39.252 "echo "sonar@123" | sudo -S sh /tmp/sonarqube04.sh"'
+                sh 'ssh -t sonar@10.32.39.252 "echo "sonar@123" | sudo -S sh /tmp/sonarqube_final.sh"'
             }
         }
               
