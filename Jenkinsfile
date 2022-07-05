@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('Set the permission') {
             steps {
-                sh 'ssh -t sonar@10.32.39.252 "chmod -R -S 755 /tmp/sonarqube03.sh"'
+                sh 'ssh -t sonar@10.32.39.252 "chmod -R 755 /tmp/sonarqube03.sh"'
             }
         }
         stage ('Execute the Sonar Qube Script') {
