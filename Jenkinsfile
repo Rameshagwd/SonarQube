@@ -11,7 +11,7 @@ pipeline {
                 sh 'sshpass -p "sonar@123" scp -r /var/lib/jenkins/workspace/SonarQube_Pipeline/sonarqube03.sh sonar@10.32.39.252:/tmp'
             }
         }
-        stage ('Execute the Sonar Qube Script') {
+        stage ('Set the permission') {
             steps {
                 sh 'ssh -t sonar@10.32.39.252 "chmode -R 755 /tmp/sonarqube03.sh"'
             }
