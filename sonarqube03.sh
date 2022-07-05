@@ -46,20 +46,29 @@ else
     echo "Starting Mysql Service .........SUCCESS"
 fi
 
-echo "Updating Mysql Config"
-echo "CREATE DATABASE sonarqube_db;
-CREATE USER 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON sonarqube_db.* TO 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
-FLUSH PRIVILEGES;" > /tmp/sonar.sql
-mysql < /tmp/sonar.sql &>>$LOG
-
-echo "Creating User for SonarQube DB"
-useradd -m -p sonar@123 sonarqube &>>$LOG
-
-if [ $? -ne 0 ]; then
-    echo "Creating User for SonarQube DB .........FAILED"
+if [ -f /tmp/sonar.sql ]; then
+    echo "The Mysql Config was updated"
 else
-    echo "Creating User for SonarQube DB .........SUCCESS"
+    echo "Updating Mysql Config"
+        echo "CREATE DATABASE sonarqube_db;
+        CREATE USER 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
+        GRANT ALL PRIVILEGES ON sonarqube_db.* TO 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
+        FLUSH PRIVILEGES;" > /tmp/sonar.sql
+        mysql < /tmp/sonar.sql &>>$LOG
+
+        if [ $? -ne 0 ]; then
+                echo "Updating Mysql Config .........FAILED"
+            else
+                echo "Updating Mysql Config .........SUCCESS"
+        fi
+fi
+
+egrep "sonarqube" /etc/passwd > /dev/null
+if [ $? -eq 0 ]; then
+    echo "The sonarqube user is created"
+else
+    echo "Creating User for SonarQube DB"
+        useradd -m -p sonar@123 sonarqube &>>$LOG
 fi
 
 if [ -f /tmp/$MYSQL_RPM ]; then
