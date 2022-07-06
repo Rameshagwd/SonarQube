@@ -14,10 +14,10 @@ R='\033[0;91m'
 Y='\033[0;93m'
 
 if [ $ID -ne 0 ]; then
-    echo -e " $Y You do not have the admin privileges to run this script file.......! $R"
+    echo -e " You do not have the admin privileges to run this script file.......!"
     exit 1
 else
-    echo -e " $G Running the script file with admin privileges.......! $R"
+    echo -e " Running the script file with admin privileges.......!"
 fi
 ########Appling Funcations#############
 VALIDATE() {
@@ -66,7 +66,7 @@ else
         VALIDATE $? "Creating User for SonarQube DB"
 fi
 
-if [ -f /tmp/$MYSQL_RPM ]; then
+if [ -f /tmp/$SQ_PKG ]; then
     
             echo "The SQ file was downloaded"
     else    
