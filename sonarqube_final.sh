@@ -17,7 +17,7 @@ if [ $ID -ne 0 ]; then
     echo -e " $G You do not have the admin privileges to run this script file.......!$R"
     exit 1
 else
-    echo -e " Running the script file with admin privileges.......!"
+    echo -e " $G Running the script file with admin privileges.......!$R"
 fi
 ########Appling Funcations#############
 VALIDATE() {
