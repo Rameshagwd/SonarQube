@@ -69,7 +69,8 @@ fi
 if [ -f /tmp/$MYSQL_RPM ]; then
     
             echo "The SQ file was downloaded"
-    else
+    else    
+            cd /tmp/
             wget $SQ_PKG -O /tmp/$SQ_ZIP &>>$LOG
             unzip /tmp/$SQ_ZIP &>>$LOG
             mv sonarqube-6.7.6 /opt/sonarqube
