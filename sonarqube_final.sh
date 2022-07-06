@@ -14,7 +14,7 @@ R='\033[0;91m'
 Y='\033[0;93m'
 
 if [ $ID -ne 0 ]; then
-    echo -e " You do not have the admin privileges to run this script file.......!"
+    echo -e " $G You do not have the admin privileges to run this script file.......!$R"
     exit 1
 else
     echo -e " Running the script file with admin privileges.......!"
