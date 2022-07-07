@@ -63,22 +63,17 @@ else
 fi
 
 
-if [ -f /tmp/$SQ_PKG ]; then
-    
-    echo "The SQ file was downloaded"
-        else
-            cd /tmp/    
-            wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip -O /tmp/$SQ_ZIP &>>$LOG
-            unzip /tmp/$SQ_ZIP &>>$LOG
-            mv sonarqube-6.7.6 /opt/sonarqube
-            chown -R sonarqube. /opt/sonarqube
-            VALIDATE $? "Downloading/Extracting/Installing SonarQube Package"
-
-            echo 'sonar.jdbc.username=sonarqube_user
-            sonar.jdbc.password=password
+cd /tmp/    
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip -O /tmp/$SQ_ZIP &>>$LOG
+unzip /tmp/$SQ_ZIP &>>$LOG
+mv sonarqube-6.7.6 /opt/sonarqube
+chown -R sonarqube. /opt/sonarqube
+VALIDATE $? "Downloading/Extracting/Installing SonarQube Package"
+        echo 'sonar.jdbc.username=sonarqube_user
+             sonar.jdbc.password=password
             sonar.jdbc.url=jdbc:mysql://localhost:3306/sonarqube_db?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance' >> /opt/sonarqube/conf/sonar.properties
             VALIDATE $? "Updating SonarQube DB Details"
-fi
+
 sed -i 's/#RUN_AS_USER=/RUN_AS_USER=sonarqube/g' /opt/sonarqube/bin/linux-x86-64/sonar.sh
 VALIDATE $? "Updating SonarQube user into the DB Configuation"
 
