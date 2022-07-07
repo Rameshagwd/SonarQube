@@ -33,6 +33,7 @@ VALIDATE() {
 yum install wget unzip java -y &>>$LOG
 VALIDATE $? "Installing SonarQube Dependences"
 
+cd /tmp/
 if [ -f /tmp/$MYSQL_PKG ]; then
     echo "MYSQL Package was downloaded"
         else
