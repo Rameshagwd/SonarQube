@@ -66,7 +66,8 @@ fi
 if [ -f /tmp/$SQ_PKG ]; then
     
     echo "The SQ file was downloaded"
-        else    
+        else
+            cd /tmp/    
             wget $SQ_PKG -O /tmp/$SQ_ZIP &>>$LOG
             unzip /tmp/$SQ_ZIP &>>$LOG
             mv sonarqube-6.7.6 /opt/sonarqube
