@@ -33,7 +33,6 @@ VALIDATE() {
 yum install wget unzip java -y &>>$LOG
 VALIDATE $? "Installing SonarQube Dependences"
 
-cd /tmp/
 if [ -f /tmp/$MYSQL_PKG ]; then
     echo "MYSQL Package was downloaded"
         else
@@ -67,6 +66,7 @@ else
         VALIDATE $? "Creating User for SonarQube DB"
 fi
 
+cd /tmp/
 if [ -f /tmp/$SQ_PKG ]; then
     
             echo "The SQ file was downloaded"
