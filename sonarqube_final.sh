@@ -64,8 +64,8 @@ fi
 
 
 cd /tmp/    
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip -O /tmp/$SQ_ZIP &>>$LOG
-unzip /tmp/$SQ_ZIP &>>$LOG
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip &>>$LOG
+unzip /tmp/sonarqube-6.7.6.zip &>>$LOG
 mv sonarqube-6.7.6 /opt/sonarqube
 chown -R sonarqube. /opt/sonarqube
 VALIDATE $? "Downloading/Extracting/Installing SonarQube Package"
